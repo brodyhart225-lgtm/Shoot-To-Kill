@@ -26,8 +26,6 @@ R:	Reload
 
 Space: Quit current mode
 
-(Adjust if your controls differ)
-
 --------------------------
 
 Installation:
@@ -84,7 +82,7 @@ Pull requests are welcome. If you have ideas or improvements, feel free to fork 
 
 License:
 
-This project is currently under an MIT license — feel free to modify and use it via their rules.
+This project is currently under an MIT license — feel free to modify it under their rules.
 
 --------------------------
 
