@@ -72,7 +72,7 @@ Pull requests are welcome. If you have ideas or improvements, feel free to fork 
 
 License
 
-This project is currently unlicensed — feel free to modify and use it.
+This project is currently under an MIT license — feel free to modify and use it via their rules.
 
 --------------------------
 
