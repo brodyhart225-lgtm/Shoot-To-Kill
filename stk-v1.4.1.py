@@ -2,7 +2,7 @@
 #pre-game stuff
 version = 'v1.4.1'
 print(f'this game is in version {version}\nhave fun!')
-#TODO: [] add wave advance screen similar to the losing screen, can unlock new guns and stuff here, examples below:
+#TODO: [x] add wave advance screen similar to the losing screen, can unlock new guns and stuff here, examples below:
 """
     (amt) bullets of (gun)
 
@@ -18,7 +18,7 @@ print(f'this game is in version {version}\nhave fun!')
 
     3 Sentry bots
 """
-#TODO: [] add health boosts using trig class
+#TODO: [x] add health boosts
 #TODO: [] add sentry bots
 #code
 #imports
