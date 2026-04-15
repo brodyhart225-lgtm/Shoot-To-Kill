@@ -2,23 +2,35 @@ Shoot to Kill
 
 Shoot to Kill is a fast-paced 2D action shooter built with Python and Pygame. Survive waves of enemies, manage your weapons, and push for the highest score you can.
 
-Features
+Features:
+
 Wave-based enemy system
+
 Multiple weapons (with more planned)
+
 Player health and survival mechanics
+
 Fast-paced gameplay loop
+
 Simple controls, easy to pick up
-Controls
-Key	Action
-WASD / Arrow Keys	Move
+
+--------------------------
+
+Controls:
+
 Mouse	Aim
-Left Click	Shoot
-R	Reload
-ESC	Quit
+
+Left Click:	Shoot/select
+
+R:	Reload
+
+Space: Quit current mode
 
 (Adjust if your controls differ)
 
-Installation
+--------------------------
+
+Installation:
 
 Clone the repository:
 
@@ -34,13 +46,13 @@ pip install pygame
 
 --------------------------
 
-Run the game:
+Running the game:
 
 python stk-v1.4.1 (or current version if it is different)
 
 --------------------------
 
-Requirements
+Requirements:
 
 Python 3.x
 
@@ -48,7 +60,7 @@ Pygame
 
 --------------------------
 
-Roadmap / TODO
+Roadmap / TODO:
 
 Stronger enemy types
 
@@ -56,7 +68,7 @@ UI improvements
 
 --------------------------
 
-Known Issues
+Known Issues:
 
 Some mechanics are still in development
 
@@ -64,13 +76,13 @@ Balancing may be inconsistent
 
 --------------------------
 
-Contributing
+Contributing:
 
 Pull requests are welcome. If you have ideas or improvements, feel free to fork the repo and submit changes.
 
 --------------------------
 
-License
+License:
 
 This project is currently under an MIT license — feel free to modify and use it via their rules.
 
