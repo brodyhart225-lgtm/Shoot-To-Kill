@@ -46,7 +46,7 @@ pip install pygame
 
 Running the game:
 
-python stk-v1.4.1 (or current version if it is different)
+python3 stk-v1.4.1 (or current version if it is different)
 
 --------------------------
 
