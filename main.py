@@ -16,7 +16,6 @@ from Assets.img.surfaces import *
 from Assets.img.texts import *
 from Assets.sfx.sounds import *
 from game import *
-
+print(f'This game is currently in version {version}\nEnjoy!')
 if __name__ == '__main__':
-    ###print(f'This game is currently in version {v}\nEnjoy!')
     main()
