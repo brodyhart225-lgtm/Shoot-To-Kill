@@ -1,4 +1,5 @@
-Shoot to Kill, a pygame shoot 'em up that uses the mouse or trackpad to shoot. use multiple weapons, experience a zombie-themed wave mode, etc.
+<img width="800" height="400" alt="title_card" src="https://github.com/user-attachments/assets/e8ef6f20-d9f0-4276-a737-5e912965feae" />
+a pygame shoot 'em up that uses the mouse or trackpad to shoot. use multiple weapons, experience a zombie-themed wave mode, etc.
 
 Features:
 
