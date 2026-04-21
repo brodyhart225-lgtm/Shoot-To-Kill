@@ -1,4 +1,4 @@
-Shoot to Kill
+Shoot to Kill, a pygame shoot 'em up that uses the mouse or trackpad to shoot. use multiple weapons, experience a zombie-themed wave mode, etc.
 
 Features:
 
