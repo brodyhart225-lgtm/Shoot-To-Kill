@@ -18,9 +18,11 @@ Simple controls, easy to pick up
 
 Controls:
 
-Mouse	Aim
+Mouse: Aim
 
-Left Click:	Shoot/select
+Mouse button (any): shoot (better for mouse)
+
+S: shoot (better for trackpad)
 
 R:	Reload
 
@@ -46,7 +48,7 @@ pip install pygame
 
 Running the game:
 
-python3 stk-v1.4.1 (or current version if it is different)
+python3 main.py
 
 --------------------------
 
