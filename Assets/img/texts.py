@@ -1,0 +1,10 @@
+import pygame
+font = pygame.font.Font(None, 50)
+font2 = pygame.font.Font(None, 25)
+fontBIG = pygame.font.Font(None, 200)
+youlose = fontBIG.render('YOU LOSE!', True, 'red')
+loserect = youlose.get_rect(center = (750, 400))
+menu_or_pgain = font.render('S - Play again... W - Menu...', True, 'Red')
+menu_pgainrect = menu_or_pgain.get_rect(center = (750, 600))
+pausemenutext = fontBIG.render('PAUSED', True, 'black')
+pausemenutextrect = pausemenutext.get_rect(center = (750, 400))
