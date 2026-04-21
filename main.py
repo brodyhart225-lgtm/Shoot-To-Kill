@@ -1,6 +1,6 @@
 #shoot to kill
 #pre-game stuff
-version = 'v1.4.2'
+version = 'v1.4.3'
 print(f'this game is in version {version}\nhave fun!')
 #TODO: [x] add wave advance screen similar to the losing screen, can unlock new guns and stuff here, examples below:
 """
@@ -24,6 +24,17 @@ print(f'this game is in version {version}\nhave fun!')
 #imports
 import pygame #module with screens, and sfx, and imgs and stuff
 from random import choice, randint #randint, best god damn thing ever, I love you randint.
+from Assets.classes.guy import *
+from Assets.classes.special_gun_trigger import *
+from Assets.classes.score_indicator import *
+from Assets.classes.bullet_hole import *
+from Assets.classes.grunt import *
+from Assets.classes.midman import *
+from Assets.classes.fatguy import *
+from Assets.classes.explosion import *
+from Assets.classes.smokehole import *
+from Assets.classes.wave_level import *
+from Assets.classes.perk_image import *
 #pygame vars (screen, clock, initialize, etc)
 pygame.init()
 screen = pygame.display.set_mode((1500, 1000))
@@ -39,39 +50,39 @@ menu_pgainrect = menu_or_pgain.get_rect(center = (750, 600))
 pausemenutext = fontBIG.render('PAUSED', True, 'black')
 pausemenutextrect = pausemenutext.get_rect(center = (750, 400))
 #pygame img vars
-gun_ani = pygame.image.load('Shoot-To-Kill\\Assets\\img\\reload.png').convert_alpha()
-idle_gun = pygame.image.load('Shoot-To-Kill\\Assets\\img\\gun_idle_01.png').convert_alpha()
-idle_gun_2 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\gun_idle_02.png').convert_alpha()
-idle_gun_3 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\gun_idle_03.png').convert_alpha()
-testicles_placeholder = pygame.image.load('Shoot-To-Kill\\Assets\\img\\testicles_s.png').convert_alpha()
-target = pygame.image.load('Shoot-To-Kill\\Assets\\img\\target.png').convert_alpha()
+gun_ani = pygame.image.load('Assets\\img\\reload.png').convert_alpha()
+idle_gun = pygame.image.load('Assets\\img\\gun_idle_01.png').convert_alpha()
+idle_gun_2 = pygame.image.load('Assets\\img\\gun_idle_02.png').convert_alpha()
+idle_gun_3 = pygame.image.load('Assets\\img\\gun_idle_03.png').convert_alpha()
+testicles_placeholder = pygame.image.load('Assets\\img\\testicles_s.png').convert_alpha()
+target = pygame.image.load('Assets\\img\\target.png').convert_alpha()
 target_diameter = 64
-bad_guy = pygame.image.load('Shoot-To-Kill\\Assets\\img\\bad_guy.png').convert_alpha()
-ar_target = pygame.image.load('Shoot-To-Kill\\Assets\\img\\AR_target.png').convert_alpha()
-ar_01 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\ar_idle_01.png').convert_alpha()
-ar_02 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\ar_idle_02.png').convert_alpha()
-ar_03 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\ar_idle_03.png').convert_alpha()
-good_guy = pygame.image.load('Shoot-To-Kill\\Assets\\img\\good_guy.png').convert_alpha()
-score_img = pygame.image.load('Shoot-To-Kill\\Assets\\img\\gun_score_img.png').convert_alpha()
-score1 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\score_guns\\01.png').convert_alpha() #red
-score2 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\score_guns\\02.png').convert_alpha() #orange
-score3 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\score_guns\\03.png').convert_alpha() #yellow
-score4 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\score_guns\\04.png').convert_alpha() #supreme
-score5 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\score_guns\\05.png').convert_alpha() #bad
-title_card = pygame.image.load('Shoot-To-Kill\\Assets\\img\\title_card.png').convert_alpha()
-quit_button = pygame.image.load('Shoot-To-Kill\\Assets\\img\\quit.png').convert()
-freeplay_button = pygame.image.load('Shoot-To-Kill\\Assets\\img\\freeplay.png').convert()
-training_button = pygame.image.load('Shoot-To-Kill\\Assets\\img\\train.png').convert()
-glossary_button = pygame.image.load('Shoot-To-Kill\\Assets\\img\\glossary.png').convert()
-gloss_big = pygame.image.load('Shoot-To-Kill\\Assets\\img\\gloss_big.png').convert_alpha()
-wave_button = pygame.image.load('Shoot-To-Kill\\Assets\\img\\wave.png').convert()
-shotty_01 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\shotgun_idle_01.png').convert_alpha()
-shotty_02 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\shotgun_idle_02.png').convert_alpha()
-shotty_03 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\shotgun_idle_03.png').convert_alpha()
-shotty_tar = pygame.image.load('Shoot-To-Kill\\Assets\\img\\BIG_target.png').convert_alpha()
-shotty_clicker = pygame.image.load('Shoot-To-Kill\\Assets\\img\\SG_target.png').convert_alpha()
-bullet_hole_sheet = pygame.image.load('Shoot-To-Kill\\Assets\\img\\bullet_holes.png').convert_alpha()
-grunt_sheet = pygame.image.load('Shoot-To-Kill\\Assets\\img\\grunt.png').convert_alpha()
+bad_guy = pygame.image.load('Assets\\img\\bad_guy.png').convert_alpha()
+ar_target = pygame.image.load('Assets\\img\\AR_target.png').convert_alpha()
+ar_01 = pygame.image.load('Assets\\img\\ar_idle_01.png').convert_alpha()
+ar_02 = pygame.image.load('Assets\\img\\ar_idle_02.png').convert_alpha()
+ar_03 = pygame.image.load('Assets\\img\\ar_idle_03.png').convert_alpha()
+good_guy = pygame.image.load('Assets\\img\\good_guy.png').convert_alpha()
+score_img = pygame.image.load('Assets\\img\\gun_score_img.png').convert_alpha()
+score1 = pygame.image.load('Assets\\img\\score_guns\\01.png').convert_alpha() #red
+score2 = pygame.image.load('Assets\\img\\score_guns\\02.png').convert_alpha() #orange
+score3 = pygame.image.load('Assets\\img\\score_guns\\03.png').convert_alpha() #yellow
+score4 = pygame.image.load('Assets\\img\\score_guns\\04.png').convert_alpha() #supreme
+score5 = pygame.image.load('Assets\\img\\score_guns\\05.png').convert_alpha() #bad
+title_card = pygame.image.load('Assets\\img\\title_card.png').convert_alpha()
+quit_button = pygame.image.load('Assets\\img\\quit.png').convert()
+freeplay_button = pygame.image.load('Assets\\img\\freeplay.png').convert()
+training_button = pygame.image.load('Assets\\img\\train.png').convert()
+glossary_button = pygame.image.load('Assets\\img\\glossary.png').convert()
+gloss_big = pygame.image.load('Assets\\img\\gloss_big.png').convert_alpha()
+wave_button = pygame.image.load('Assets\\img\\wave.png').convert()
+shotty_01 = pygame.image.load('Assets\\img\\shotgun_idle_01.png').convert_alpha()
+shotty_02 = pygame.image.load('Assets\\img\\shotgun_idle_02.png').convert_alpha()
+shotty_03 = pygame.image.load('Assets\\img\\shotgun_idle_03.png').convert_alpha()
+shotty_tar = pygame.image.load('Assets\\img\\BIG_target.png').convert_alpha()
+shotty_clicker = pygame.image.load('Assets\\img\\SG_target.png').convert_alpha()
+bullet_hole_sheet = pygame.image.load('Assets\\img\\bullet_holes.png').convert_alpha()
+grunt_sheet = pygame.image.load('Assets\\img\\grunt.png').convert_alpha()
 grunt_frames = []
 columnsgru = 2
 rowsgru = 1
@@ -81,7 +92,7 @@ for row in range(rowsgru):
     for col in range(columnsgru):
         frame = grunt_sheet.subsurface(col*gruwid, row*gruhei, gruwid, gruhei)
         grunt_frames.append(frame)
-middleman_sheet = pygame.image.load('Shoot-To-Kill\\Assets\\img\\middleman.png').convert_alpha()
+middleman_sheet = pygame.image.load('Assets\\img\\middleman.png').convert_alpha()
 midman_frames = []
 columnsmid = 2
 rowsmid = 1
@@ -91,13 +102,13 @@ for row in range(rowsmid):
     for col in range(columnsmid):
         frame = middleman_sheet.subsurface(col*midwid, row*midhei, midwid, midhei)
         midman_frames.append(frame)
-fatso = pygame.image.load('Shoot-To-Kill\\Assets\\img\\fatso.png').convert_alpha()
+fatso = pygame.image.load('Assets\\img\\fatso.png').convert_alpha()
 fatso_frames = []
 for col in range(2):
     for row in range(1):
         fat_frame = fatso.subsurface(col*220, row*270, 220, 270)
         fatso_frames.append(fat_frame)
-explosion_sheet = pygame.image.load('Shoot-To-Kill\\Assets\\img\\EXPLOSION.png').convert_alpha()
+explosion_sheet = pygame.image.load('Assets\\img\\EXPLOSION.png').convert_alpha()
 explosion_sheet = pygame.transform.scale(explosion_sheet, (1024, 2560))
 explo_frames = []
 columnsexp = 2
@@ -106,21 +117,21 @@ for row in range(rowsexp):
     for col in range(columnsexp):
         ex_frame = explosion_sheet.subsurface(col*512, row*512, 512, 512)
         explo_frames.append(ex_frame)
-smoke = pygame.image.load('Shoot-To-Kill\\Assets\\img\\smoke.png').convert_alpha()
+smoke = pygame.image.load('Assets\\img\\smoke.png').convert_alpha()
 smoke = pygame.transform.scale(smoke, (700, 700))
-rpg_tar = pygame.image.load('Shoot-To-Kill\\Assets\\img\\rpg_tar.png').convert_alpha()
+rpg_tar = pygame.image.load('Assets\\img\\rpg_tar.png').convert_alpha()
 rpg_tar = pygame.transform.scale(rpg_tar, (512, 512))
-rpg_trg = pygame.image.load('Shoot-To-Kill\\Assets\\img\\rpg_trig.png').convert_alpha()
-rp_01 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\rp_01.png').convert_alpha()
-rp_02 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\rp_02.png').convert_alpha()
-rp_03 = pygame.image.load('Shoot-To-Kill\\Assets\\img\\rp_03.png').convert_alpha()
-waves_bg = pygame.image.load('Shoot-To-Kill\\Assets\\img\\wave_bg.png').convert()
+rpg_trg = pygame.image.load('Assets\\img\\rpg_trig.png').convert_alpha()
+rp_01 = pygame.image.load('Assets\\img\\rp_01.png').convert_alpha()
+rp_02 = pygame.image.load('Assets\\img\\rp_02.png').convert_alpha()
+rp_03 = pygame.image.load('Assets\\img\\rp_03.png').convert_alpha()
+waves_bg = pygame.image.load('Assets\\img\\wave_bg.png').convert()
 waves_bg = pygame.transform.scale(waves_bg, (1500, 1000))
-pause_bg = pygame.image.load('Shoot-To-Kill\\Assets\\img\\pause_bg.png').convert()
+pause_bg = pygame.image.load('Assets\\img\\pause_bg.png').convert()
 pause_bg = pygame.transform.scale(pause_bg, (1500, 1000))
-waveadv_bg = pygame.image.load('Shoot-To-Kill\\Assets\\img\\waveadv_bg.png').convert()
+waveadv_bg = pygame.image.load('Assets\\img\\waveadv_bg.png').convert()
 waveadv_bg = pygame.transform.scale(waveadv_bg, (1500, 1000))
-perksheet = pygame.image.load('Shoot-To-Kill\\Assets\\img\\perk_sheet.png').convert()
+perksheet = pygame.image.load('Assets\\img\\perk_sheet.png').convert()
 perk_images = []
 perkcol = 2
 perkrow = 3
@@ -129,28 +140,28 @@ for col in range(perkcol):
         frame = perksheet.subsurface(col * 160, row * 160, 160, 160)
         perk_images.append(frame)
 #pygame sfx vars
-pistol_shoot = pygame.mixer.Sound('Shoot-To-Kill\\Assets/sfx/pistol_shoot.mp3')
+pistol_shoot = pygame.mixer.Sound('Assets/sfx/pistol_shoot.mp3')
 pistol_shoot.set_volume(0.1)
-shotty_shoot = pygame.mixer.Sound('Shoot-To-Kill\\Assets/sfx/shotty_shoot.mp3')
-#scream1 = pygame.mixer.Sound('Shoot-To-Kill\\Assets/sfx/scream1.mp3')
-#scream2 = pygame.mixer.Sound('Shoot-To-Kill\\Assets/sfx/scream2.mp3')
-#scream3 = pygame.mixer.Sound('Shoot-To-Kill\\Assets/sfx/scream3.mp3') #UNNEEDED ASSETS, ALSO ANNOYING ASF, MAYBE USE LATER IDFK
-hit = pygame.mixer.Sound('Shoot-To-Kill\\Assets/sfx/hit.mp3')
+shotty_shoot = pygame.mixer.Sound('Assets/sfx/shotty_shoot.mp3')
+#scream1 = pygame.mixer.Sound('Assets/sfx/scream1.mp3')
+#scream2 = pygame.mixer.Sound('Assets/sfx/scream2.mp3')
+#scream3 = pygame.mixer.Sound('Assets/sfx/scream3.mp3') #UNNEEDED ASSETS, ALSO ANNOYING ASF, MAYBE USE LATER IDFK
+hit = pygame.mixer.Sound('Assets/sfx/hit.mp3')
 screams = [
     #scream1, # BAA-!
     #scream2, # WAAUHHHUAHHUAHHHH
     #scream3, # BAAAAAAAAAAAAAAAAAAAH
     hit         # PWAOHHH
 ]
-weapon_change = pygame.mixer.Sound('Shoot-To-Kill\\Assets/sfx/weapon_change.mp3')
-reload_noise = pygame.mixer.Sound('Shoot-To-Kill\\Assets/sfx/reload_noise.mp3')
-ouch = pygame.mixer.Sound('Shoot-To-Kill\\Assets/sfx/OUCH.mp3')
-kablooeysound = pygame.mixer.Sound('Shoot-To-Kill\\Assets/sfx/kablooey.mp3')
-wave_advance = pygame.mixer.Sound('Shoot-To-Kill\\Assets/sfx/wave_advance.mp3')
-death_sft = pygame.mixer.Sound('Shoot-To-Kill\\Assets/sfx/lose.mp3')
-pause_sft = pygame.mixer.Sound('Shoot-To-Kill\\Assets/sfx/pause.mp3')
-unpause_sft = pygame.mixer.Sound('Shoot-To-Kill\\Assets/sfx/unpause.mp3')
-ahh = pygame.mixer.Sound('Shoot-To-Kill\\Assets/sfx/ahh.mp3')
+weapon_change = pygame.mixer.Sound('Assets/sfx/weapon_change.mp3')
+reload_noise = pygame.mixer.Sound('Assets/sfx/reload_noise.mp3')
+ouch = pygame.mixer.Sound('Assets/sfx/OUCH.mp3')
+kablooeysound = pygame.mixer.Sound('Assets/sfx/kablooey.mp3')
+wave_advance = pygame.mixer.Sound('Assets/sfx/wave_advance.mp3')
+death_sft = pygame.mixer.Sound('Assets/sfx/lose.mp3')
+pause_sft = pygame.mixer.Sound('Assets/sfx/pause.mp3')
+unpause_sft = pygame.mixer.Sound('Assets/sfx/unpause.mp3')
+ahh = pygame.mixer.Sound('Assets/sfx/ahh.mp3')
 #other vars
 BAM = False
 bam_timer = 0
@@ -183,280 +194,7 @@ NO_MOUSE_IS_NOT_FUCKING_VISIBLE = False
 pygame.mouse.set_visible(NO_MOUSE_IS_NOT_FUCKING_VISIBLE)
 bullets = 9
 #class
-class guy:
-    def __init__(self, image):
-        self.x = randint(300, 1200)
-        self.y = 0
-        self.image = image
-        self.imagerect = self.image.get_rect(center = (self.x, self.y))
-    def move(self):
-        self.y += 15
-        self.imagerect = self.image.get_rect(center = (self.x, self.y))
-    def passed_cam(self):
-        if self.y >= 1500:
-            return(True)
-        else:
-            return(False)
-class special_gun_trigger:
-    def __init__(self, image):
-        self.image = image
-        self.x = randint(200, 1300)
-        self.y = randint(200, 800)
-        self.imagerect = self.image.get_rect(center = (self.x, self.y))
-        self.timer = 0
-    def is_dead(self):
-        self.limit = 120
-        self.timer += 1
-        if self.timer >= self.limit:
-            return(True)
-        else:
-            return(False)
-class score_indicator:
-    def __init__(self, image, text):
-        self.image = image
-        self.x = 1000
-        self.y = 30
-        self.alpha = 255
-        self.text = text
-        self.imagerect_text = self.image.get_rect(topleft = (self.x, self.y))
-        self.imagerect_img = self.image.get_rect(topright = (self.x, self.y))
-    def fade(self):
-        self.y += 3
-        self.alpha -= 3
-        self.imagerect_text = self.image.get_rect(topleft = (self.x, self.y))
-        self.imagerect_img = self.image.get_rect(topright = (self.x, self.y))
-    def push(self):
-        self.y += 80
-        self.imagerect_text = self.image.get_rect(topleft = (self.x, self.y))
-        self.imagerect_img = self.image.get_rect(topright = (self.x, self.y))
-class bullet_hole:
-    def __init__(self, x, y, image):
-        self.x = x
-        self.y = y
-        self.image = image
-        self.imagerect = self.image.get_rect(center = (self.x, self.y))
-    def draw(self):
-        screen.blit(self.image, self.imagerect)
-class grunt:
-    def __init__(self, frames):
-        self.frames = frames
-        self.image = frames[0]
-        self.x = randint(300, 1200)
-        self.y = 0
-        self.imagerect = self.image.get_rect(center = (self.x, self.y))
-        self.health = 1
-        self.gru_index = 0
-        self.gru_frames = 2
-        self.ani_timer = 0
-        self.ani_limit = 20
-    def move(self, speed):
-        if self.imagerect.centery < 1000:
-            self.imagerect.centery += speed
-        if self.imagerect.centery >= 1000:
-            self.imagerect.centery = 1000
-    def attacking(self):
-        return(self.imagerect.centery >= 1000)
-    def draw(self):
-        screen.blit(self.image, self.imagerect)
-    def hit(self, damage):
-        self.damage = damage
-        self.health -= self.damage
-    def dead(self):
-        return(self.health <= 0)
-    def image_update(self):
-        self.gru_index += 1
-        if self.gru_index > self.gru_frames:
-            self.gru_index = 0
-        match self.gru_index:
-            case 0:
-                self.image = self.frames[0]
-            case 1:
-                self.image = self.frames[1]
-    def timed_ani(self):
-        self.ani_timer += 1
-        if self.ani_timer >= self.ani_limit:
-            self.ani_timer = 0
-            return(True)
-class midman:
-    def __init__(self, frames):
-        self.frames = frames
-        self.image = frames[0]
-        self.x = randint(300, 1200)
-        self.y = 0
-        self.imagerect = self.image.get_rect(center = (self.x, self.y))
-        self.health = 2
-        self.gru_index = 0
-        self.gru_frames = 2
-        self.ani_timer = 0
-        self.ani_limit = 20
-    def move(self, speed):
-        if self.imagerect.centery < 1000:
-            self.imagerect.centery += speed - 1
-        if self.imagerect.centery >= 1000:
-            self.imagerect.centery = 1000
-    def attacking(self):
-        return(self.imagerect.centery >= 1000)
-    def draw(self):
-        screen.blit(self.image, self.imagerect)
-    def hit(self, damage):
-        self.damage = damage
-        self.health -= self.damage
-    def dead(self):
-        return(self.health <= 0)
-    def image_update(self):
-        self.gru_index += 1
-        if self.gru_index > self.gru_frames:
-            self.gru_index = 0
-        match self.gru_index:
-            case 0:
-                self.image = self.frames[0]
-            case 1:
-                self.image = self.frames[1]
-    def timed_ani(self):
-        self.ani_timer += 1
-        if self.ani_timer >= self.ani_limit:
-            self.ani_timer = 0
-            return(True)
-class fatguy:
-    def __init__(self, frames):
-        self.frames = frames
-        self.image = frames[0]
-        self.x = randint(300, 1200)
-        self.y = 0
-        self.imagerect = self.image.get_rect(center = (self.x, self.y))
-        self.health = 3
-        self.gru_index = 0
-        self.gru_frames = 2
-        self.ani_timer = 0
-        self.ani_limit = 30
-    def move(self, speed):
-        if self.imagerect.centery < 1000:
-            self.imagerect.centery += speed - 2
-        if self.imagerect.centery >= 1000:
-            self.imagerect.centery = 1000
-    def attacking(self):
-        return(self.imagerect.centery >= 1000)
-    def draw(self):
-        screen.blit(self.image, self.imagerect)
-    def hit(self, damage):
-        self.damage = damage
-        self.health -= self.damage
-    def dead(self):
-        return(self.health <= 0)
-    def image_update(self):
-        self.gru_index += 1
-        if self.gru_index > self.gru_frames:
-            self.gru_index = 0
-        match self.gru_index:
-            case 0:
-                self.image = self.frames[0]
-            case 1:
-                self.image = self.frames[1]
-    def timed_ani(self):
-        self.ani_timer += 1
-        if self.ani_timer >= self.ani_limit:
-            self.ani_timer = 0
-            return(True)
-class explosion:
-    def __init__(self, x, y, frames):
-        self.x = x
-        self.y = y
-        self.frames = frames
-        self.index = 5
-        self.image = self.frames[self.index]
-        self.imagerect = self.image.get_rect(center = (self.x, self.y))
-        self.timer = 0
-        self.limit = 6
-    def adv(self):
-        self.timer += 1
-        self.con = self.timer >= self.limit
-        if self.con:
-            self.index += 1
-            self.timer = 0
-    def is_adv(self):
-        return(self.index>=len(self.frames))
-    def draw(self):
-        self.image = self.frames[self.index]
-        screen.blit(self.image, self.imagerect)
-class smokehole:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        self.alpha = 255
-        self.image = smoke
-        self.imagerect = self.image.get_rect(center = (self.x, self.y))
-    def fade(self):
-        self.alpha -= 5
-        self.image.set_alpha(self.alpha)
-    def draw(self):
-        screen.blit(self.image, self.imagerect)
-class wavelevel:
-    def __init__(self):
-        self.wave = 1
-        self.max_en = 5
-        self.enemies = 50
-        self.enemies_killed = 0
-        self.chance = 100
-    def add_enemy(self):
-        self.enemies_killed += 1
-    def reseed(self):
-        self.enemies = int(self.enemies * 1.5)
-        self.wave += 1
-        self.max_en = int(self.max_en * 1.5)
-        self.enemies_killed = 0
-    def is_ready_to_reseed(self):
-        return(self.enemies_killed >= self.enemies)
-class perk_image:
-    def __init__(self, image, pos, images = list):
-        self.image = image
-        self.images = images
-        self.pos = pos
-        self.y = 800
-        match self.pos:
-            case 1:
-                self.x = 375
-            case 2:
-                self.x = 750
-            case 3:
-                self.x = 1125
-        self.imagerect = self.image.get_rect(center = (self.x, self.y))
-        if self.image == self.images[0]:
-            self.effect = 'Damage multiplier'
-        elif self.image == self.images[1]:
-            self.effect = 'Extra life'
-        elif self.image == self.images[2]:
-            self.effect = 'Enemies slowed 0.75x'
-        elif self.image == self.images[3]:
-            self.effect = '1.5x ammo capacity'
-        elif self.image == self.images[4]:
-            self.effect = '1.5x target size'
-        elif self.image == self.images[5]:
-            self.effect = '1.5x max HP'
-        self.text = font2.render(self.effect, True, 'white')
-        self.textrect = self.text.get_rect(midright = (self.imagerect.left - 10, self.imagerect.centery))
-    def draw(self):
-        screen.blit(self.image, self.imagerect)
-        screen.blit(self.text, self.textrect)
-    def increase(self, var, amt):
-        var *= amt
-        return(var)
-#   __________________________
-    def should_increase(self):
-        pass
-#   __________________________
-#   ^^^^^^^^^^^^^^^^^^^^^^^^^^ example block
-    def should_increase_damage(self):
-        return(self.effect == 'Damage multiplier')
-    def should_increase_ammo(self):
-        return(self.effect == '1.5x ammo capacity')
-    def should_increase_lives(self):
-        return(self.effect == 'Extra life')
-    def should_increase_slow(self):
-        return(self.effect == 'Enemies slowed 0.75x')
-    def should_increase_size(self):
-        return(self.effect == '1.5x target size')
-    def should_increase_health(self):
-        return(self.effect == '1.5x max HP')
+
 ar_trigger_powerup = special_gun_trigger(ar_target)
 ar_timer = 0
 ar_end = 120
@@ -537,7 +275,7 @@ while running:
         screen.blit(glossary_button, glossary_rect)
         screen.blit(wave_button, wave_rect)
         for hole in bullet_holes:
-            hole.draw()
+            hole.draw(screen)
         screen.blit(target, cursorrect) # target last
 ############################################# mode change #####################################################
     if state == 'training':
@@ -637,15 +375,15 @@ while running:
         if cy in range(600, 1000) and gun == 'rocket launcher':
             gun_sprite = rp_01
         for smk in smokeholes:
-            smk.draw()
+            smk.draw(screen)
             smk.fade()
             if smk.alpha <=0:
                 smokeholes.remove(smk)
         for ex in explosions:
-            ex.draw()
+            ex.draw(screen)
             ex.adv()
             if ex.index == 6:
-                smokeholes.append(smokehole(ex.x, ex.y))
+                smokeholes.append(smokehole(ex.x, ex.y, smoke))
             if ex.is_adv():
                 explosions.remove(ex)
         gunrect = gun_sprite.get_rect(midbottom=(cursorrect.centerx, ty)) #rects next
@@ -864,7 +602,7 @@ while running:
                                     state = 'wavemodeadvance'
                                     perks.clear()
                                     for i in range(1, 4):
-                                        perks.append(perk_image(choice(perk_images), i, perk_images))
+                                        perks.append(perk_image(choice(perk_images), i, perk_images, font2))
                                     waveadv_text = font.render(f'You advanced to wave {wavelevelindicator.wave}!', True, 'white')
                                     waveadv_text_pick = font.render('Pick a perk!', True, 'white')
                                     waveadv_textrect = waveadv_text.get_rect(center = (750, 200))
@@ -897,7 +635,7 @@ while running:
                 health -= 0.01
             if enem.timed_ani():
                 enem.image_update()
-            enem.draw()
+            enem.draw(screen)
         if len(wave_enemies) < wavelevelindicator.max_en and randint(1, 20) == 1:
             wave_enemies.append(choice((grunt(grunt_frames), grunt(grunt_frames), grunt(grunt_frames), midman(midman_frames), grunt(grunt_frames), grunt(grunt_frames), grunt(grunt_frames), midman(midman_frames), fatguy(fatso_frames))))
         cursorrect = target.get_rect(center = (cx, cy))
@@ -1000,7 +738,7 @@ while running:
         screen.blit(waveadv_text, waveadv_textrect)
         screen.blit(waveadv_text_pick, waveadv_text_pickrect)
         for perk in perks:
-            perk.draw()
+            perk.draw(screen)
         cx, cy = pygame.mouse.get_pos()
         cursorrect = target.get_rect(center = (cx, cy))
         screen.blit(target, cursorrect)
