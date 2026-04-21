@@ -1,6 +1,5 @@
-Shoot to Kill
-
-Shoot to Kill is a fast-paced 2D action shooter built with Python and Pygame. Survive waves of enemies, manage your weapons, and push for the highest score you can.
+<img width="800" height="400" alt="title_card" src="https://github.com/user-attachments/assets/e8ef6f20-d9f0-4276-a737-5e912965feae" />
+a pygame shoot 'em up that uses the mouse or trackpad to shoot. use multiple weapons, experience a zombie-themed wave mode, etc.
 
 Features:
 
