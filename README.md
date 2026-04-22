@@ -1,7 +1,12 @@
 <img width="800" height="400" alt="title_card" src="https://github.com/user-attachments/assets/e8ef6f20-d9f0-4276-a737-5e912965feae" />
-a pygame shoot 'em up that uses the mouse or trackpad to shoot. use multiple weapons, experience a zombie-themed wave mode, etc.
 
-Features:
+# Shoot to Kill 🔫 
+
+## A pygame shooter
+
+---------------------------------
+
+## Features:
 
 Wave-based enemy system
 
@@ -15,7 +20,7 @@ Simple controls, easy to pick up
 
 --------------------------
 
-Controls:
+## Controls:
 
 Mouse: Aim
 
@@ -29,7 +34,7 @@ Space: Quit current mode
 
 --------------------------
 
-Installation:
+## Installation:
 
 Clone the repository:
 
@@ -39,19 +44,19 @@ cd shoot-to-kill
 
 --------------------------
 
-Install dependencies:
+### Install dependencies:
 
 pip install pygame
 
 --------------------------
 
-Running the game:
+### Running the game:
 
 python3 main.py
 
 --------------------------
 
-Requirements:
+## Requirements:
 
 Python 3.x
 
@@ -59,7 +64,7 @@ Pygame
 
 --------------------------
 
-Roadmap / TODO:
+## Roadmap / TODO:
 
 Stronger enemy types
 
@@ -67,24 +72,27 @@ UI improvements
 
 --------------------------
 
-Known Issues:
+## Known Issues:
 
 Some mechanics are still in development
 
-Balancing may be inconsistent
+Target killing all enemies in it's range in training mode might not hit all enemies sometimes
 
 --------------------------
 
-Contributing:
+# Contributing:
 
 Pull requests are welcome. If you have ideas or improvements, feel free to fork the repo and submit changes.
 
 --------------------------
 
-License:
+# License:
 
 This project is currently under an MIT license — feel free to modify it under their rules.
 
 --------------------------
 
-Enjoy!
+If you enjoy this repo and/or want to see/contribute more, leave a ⭐
+
+### Enjoy!
+<img width="150" height="240" alt="good_guy" src="https://github.com/user-attachments/assets/bef4c0f7-ad93-46c2-bd93-1280d554a1a0" />
