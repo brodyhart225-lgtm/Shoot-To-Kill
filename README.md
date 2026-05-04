@@ -40,7 +40,7 @@ Clone the repository:
 
 git clone https://github.com/yourusername/shoot-to-kill.git
 
-cd shoot-to-kill
+cd Shoot-To-Kill
 
 --------------------------
 
