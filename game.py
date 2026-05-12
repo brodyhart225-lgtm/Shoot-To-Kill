@@ -19,7 +19,7 @@ from Assets.img.surfaces import *
 from Assets.img.texts import *
 from Assets.sfx.sounds import *
 from Assets.saves.saves import *
-version = 'v1.4.6'
+version = 'v1.4.7'
 def main():
     global target
     global version
@@ -83,7 +83,8 @@ def main():
                         running = False
                     elif cursorrect.colliderect(training_rect):
                         state = 'training'
-                        score = 0
+                        data = load_game()
+                        score = data['score']
                         triggers = []
                         enemies = []
                         score_indicators = []
@@ -123,6 +124,7 @@ def main():
     ############################################# mode change #####################################################
         if state == 'training':
             clock.tick(60) #refresh rate, 60 fps
+            data = {'score': score}
             bullet_display = font.render(f"{bullets} bullets", True, 'black')
             gun_display = font.render(f"gun: {gun}", True, 'black')
             score_display = font.render(f"score: {score}", True, 'black')
@@ -147,6 +149,7 @@ def main():
                         reload_noise.play()
                     if event.key == pygame.K_SPACE:
                         state = 'menu'
+                        save_game(data)
                     if event.key == pygame.K_s and not reloading and gun != 'assault rifle' or event.type == pygame.MOUSEBUTTONDOWN and not reloading and gun != 'assault rifle':
                         bullets -= 1
                         if combo_level >= 9 and gun == 'pistol':
