@@ -1,5 +1,5 @@
 import pygame
-screen = pygame.display.set_mode((1500, 1000))
+screen = pygame.display.set_mode((1500, 1000), pygame.SCALED|pygame.FULLSCREEN)
 gun_ani = pygame.image.load('Assets\\img\\reload.png').convert_alpha()
 idle_gun = pygame.image.load('Assets\\img\\gun_idle_01.png').convert_alpha()
 idle_gun_2 = pygame.image.load('Assets\\img\\gun_idle_02.png').convert_alpha()

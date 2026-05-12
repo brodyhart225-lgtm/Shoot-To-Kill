@@ -18,7 +18,8 @@ pygame.init()
 from Assets.img.surfaces import *
 from Assets.img.texts import *
 from Assets.sfx.sounds import *
-version = 'v1.4.5'
+from Assets.saves.saves import *
+version = 'v1.4.6'
 def main():
     global target
     global version
@@ -58,7 +59,6 @@ def main():
     spawn_enemy = False
     enemy_limit = 5
     state = 'menu'
-    max_trigs = 1000
     bullet_holes = []
     text = font.render(version, True, 'white')
     while running:
@@ -375,7 +375,7 @@ def main():
                     triggers.remove(trig)
                 else:
                     screen.blit(trig.image, trig.imagerect)
-            if randint(1, 200) == 1 and len(triggers) < max_trigs:
+            if randint(1, 500) == 1:
                 triggers.append(special_gun_trigger(choice((ar_target, shotty_clicker, rpg_trg))))
     ############################################# mode change #####################################################
         if state == 'glossary':
@@ -424,7 +424,7 @@ def main():
                     if event.key == pygame.K_r and not reloading:
                         reloading = True
                         reload_noise.play()
-                if event.type == pygame.MOUSEBUTTONDOWN and gun != 'assault rifle' and not reloading or event.type == pygame.KEYDOWN and event.key == pygame.K_s:
+                if event.type == pygame.MOUSEBUTTONDOWN and gun != 'assault rifle' and not reloading or event.type == pygame.KEYDOWN and event.key == pygame.K_s and not reloading:
                     bullets -= 1
                     BAM = True
                     if bullets < 0 and gun == 'pistol' and not reloading:
