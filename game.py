@@ -14,12 +14,11 @@ from Assets.classes.explosion import *
 from Assets.classes.smokehole import *
 from Assets.classes.wave_level import *
 from Assets.classes.perk_image import *
-pygame.init()
 from Assets.img.surfaces import *
 from Assets.img.texts import *
 from Assets.sfx.sounds import *
 from Assets.saves.saves import *
-version = 'v1.4.7'
+version = 'v1.4.8'
 def main():
     global target
     global version
@@ -150,27 +149,27 @@ def main():
                     if event.key == pygame.K_SPACE:
                         state = 'menu'
                         save_game(data)
-                    if event.key == pygame.K_s and not reloading and gun != 'assault rifle' or event.type == pygame.MOUSEBUTTONDOWN and not reloading and gun != 'assault rifle':
-                        bullets -= 1
-                        if combo_level >= 9 and gun == 'pistol':
-                            mag_dump = True
+                if  event.type == pygame.KEYDOWN and event.key == pygame.K_s and not reloading and gun != 'assault rifle' or event.type == pygame.MOUSEBUTTONDOWN and not reloading and gun != 'assault rifle':
+                    bullets -= 1
+                    if combo_level >= 9 and gun == 'pistol':
+                        mag_dump = True
+                    BAM = True
+                    if bullets < 0 and gun == 'pistol':
+                        BAM = False
+                        reload_noise.play()
+                        reloading = True
+                    if gun == 'shotty':
+                        shotty_shoot.play()
+                    if gun == 'rocket launcher':
+                        explosions.append(explosion(cx, cy, explo_frames))
+                        kablooey = True
+                        kablooeysound.play()
                         BAM = True
-                        if bullets < 0 and gun == 'pistol':
-                            BAM = False
-                            reload_noise.play()
-                            reloading = True
-                        if gun == 'shotty':
-                            shotty_shoot.play()
-                        if gun == 'rocket launcher':
-                            explosions.append(explosion(cx, cy, explo_frames))
-                            kablooey = True
-                            kablooeysound.play()
-                            BAM = True
-                        if gun == 'pistol' and not reloading:
-                            pistol_shoot.play()
-                        if bullets <= 0 and gun != 'pistol':
-                            gun = 'pistol'
-                            weapon_change.play()
+                    if gun == 'pistol' and not reloading:
+                        pistol_shoot.play()
+                    if bullets <= 0 and gun != 'pistol':
+                        gun = 'pistol'
+                        weapon_change.play()
                 """if event.type == pygame.MOUSEBUTTONDOWN and not reloading and gun != 'assault rifle':
                     bullets -= 1
                     if combo_level >= 9 and gun == 'pistol':
@@ -233,7 +232,6 @@ def main():
                 if ex.is_adv():
                     explosions.remove(ex)
             gunrect = gun_sprite.get_rect(midbottom=(cursorrect.centerx, ty)) #rects next
-            reloadrect = gun_frames[gun_ani_index].get_rect(midbottom=(cx, ty))
             keys = pygame.key.get_pressed()
             mouse = pygame.mouse.get_pressed()
             if keys[pygame.K_s] and gun == 'assault rifle' or any(mouse) and gun == 'assault rifle': #left click + rifle
@@ -252,7 +250,7 @@ def main():
                 if enemy.passed_cam():
                     enemies.remove(enemy)
             if reloading:
-                screen.blit(gun_frames[gun_ani_index], reloadrect)
+                screen.blit(gun_frames[gun_ani_index], gunrect)
                 gun_timer += 1
                 if gun_timer >= anim_speed:
                     gun_ani_index += 1
@@ -408,7 +406,6 @@ def main():
             clock.tick(60)
             wave_display = font.render(f'WAVE {wavelevelindicator.wave}', True, 'red')
             bullet_display = font.render(f"{bullets} bullets", True, 'black')
-            reloadrect = gun_frames[gun_ani_index].get_rect(midbottom=(cx, ty))
             enemies_left_display = font.render(f'Enemies left this wave: {wavelevelindicator.enemies - wavelevelindicator.enemies_killed}', True, 'black')
             if reloading:
                 bullet_display = font.render('reloading...', True, 'black')
@@ -488,7 +485,7 @@ def main():
             screen.blit(target, cursorrect)
             gunrect = idle_gun.get_rect(midbottom=(cx, ty)) #rects next
             if reloading:
-                screen.blit(gun_frames[gun_ani_index], reloadrect)
+                screen.blit(gun_frames[gun_ani_index], gunrect)
                 gun_timer += 1
                 if gun_timer >= anim_speed:
                     gun_ani_index += 1
@@ -607,3 +604,4 @@ def main():
     #end
     pygame.quit()
     sys.exit()
+print('all modules successfully loaded')
