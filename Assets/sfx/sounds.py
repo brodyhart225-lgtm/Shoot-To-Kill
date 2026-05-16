@@ -21,3 +21,6 @@ death_sft = pygame.mixer.Sound('Assets/sfx/lose.mp3')
 pause_sft = pygame.mixer.Sound('Assets/sfx/pause.mp3')
 unpause_sft = pygame.mixer.Sound('Assets/sfx/unpause.mp3')
 ahh = pygame.mixer.Sound('Assets/sfx/ahh.mp3')
+if __name__ == '__main__':
+    print('It appears you loaded this game from somewhere that isn\'t main.py')
+    input('press enter to quit --->')

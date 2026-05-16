@@ -8,3 +8,6 @@ menu_or_pgain = font.render('S - Play again... W - Menu...', True, 'Red')
 menu_pgainrect = menu_or_pgain.get_rect(center = (750, 600))
 pausemenutext = fontBIG.render('PAUSED', True, 'black')
 pausemenutextrect = pausemenutext.get_rect(center = (750, 400))
+if __name__ == '__main__':
+    print('It appears you loaded this game from somewhere that isn\'t main.py')
+    input('press enter to quit --->')

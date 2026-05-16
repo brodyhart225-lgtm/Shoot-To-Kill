@@ -19,3 +19,6 @@ class explosion:
     def draw(self, screen):
         self.image = self.frames[self.index]
         screen.blit(self.image, self.imagerect)
+if __name__ == '__main__':
+    print('It appears you loaded this game from somewhere that isn\'t main.py')
+    input('press enter to quit --->')

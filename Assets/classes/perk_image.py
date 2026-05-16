@@ -49,3 +49,6 @@ class perk_image:
         return(self.effect == '1.5x target size')
     def should_increase_health(self):
         return(self.effect == '1.5x max HP')
+if __name__ == '__main__':
+    print('It appears you loaded this game from somewhere that isn\'t main.py')
+    input('press enter to quit --->')

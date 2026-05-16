@@ -1,0 +1,60 @@
+{
+  "version": 11,
+  "randomSeed": "986ac10251cdd107a6b2c25422624ca3",
+  "graph": {
+    "viewport": {
+      "xmin": -2.8725080008674335,
+      "ymin": -2.7841870908877944,
+      "zmin": -2.8115970305489437,
+      "xmax": 2.695866180908155,
+      "ymax": 2.7841870908877944,
+      "zmax": 2.756777151226645
+    },
+    "worldRotation3D": [
+      -0.9457534196458576,
+      0.32488531704001,
+      -1.1582138981519634e-16,
+      0.32488531704001,
+      0.9457534196458576,
+      3.978697636030214e-17,
+      1.2246467991473537e-16,
+      0,
+      -1.0000000000000004
+    ],
+    "axis3D": [
+      0,
+      0,
+      1.0000000000000964
+    ],
+    "product": "graphing-3d",
+    "threeDMode": true,
+    "__v12ViewportLatexStash": {
+      "xmin": "-2.8725080008674335",
+      "xmax": "2.695866180908155",
+      "ymin": "-2.7841870908877944",
+      "ymax": "2.7841870908877944",
+      "zmin": "-2.8115970305489437",
+      "zmax": "2.756777151226645"
+    }
+  },
+  "expressions": {
+    "list": [
+      {
+        "type": "expression",
+        "id": "1",
+        "color": "#c74440",
+        "latex": "y=20000000000000000xzzzzzzzzzzzzzzzzzzxzxzxzxzxxxxxxxxxxxxzzzzzzzzzzzzzzzzxxxxxzxzxzxzxxzxzxzxzxxzxzxzxxzxzxzxzxxxzxxzxzxzxxzxzxxzxxzxxzxzxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      },
+      {
+        "type": "expression",
+        "id": "3",
+        "color": "#2d70b3",
+        "latex": "y=0z"
+      }
+    ]
+  },
+  "includeFunctionParametersInRandomSeed": true,
+  "doNotMigrate3dLineWidthZero": true,
+  "doNotMigrateMovablePointStyle": true,
+  "_calculatorType": "Calculator3D"
+}

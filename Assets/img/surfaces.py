@@ -106,3 +106,6 @@ for row in range(rowshole):
     for col in range(columnshole):
         holeframe = bullet_hole_sheet.subsurface(col*hole_width, row*hole_height, hole_width, hole_height)
         bullet_hole_imgs.append(holeframe)
+if __name__ == '__main__':
+    print('It appears you loaded this game from somewhere that isn\'t main.py')
+    input('press enter to quit --->')

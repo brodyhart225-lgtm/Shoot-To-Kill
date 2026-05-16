@@ -39,3 +39,6 @@ class midman:
         if self.ani_timer >= self.ani_limit:
             self.ani_timer = 0
             return(True)
+if __name__ == '__main__':
+    print('It appears you loaded this game from somewhere that isn\'t main.py')
+    input('press enter to quit --->')

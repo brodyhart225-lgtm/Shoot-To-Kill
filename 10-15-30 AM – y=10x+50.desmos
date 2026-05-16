@@ -1,0 +1,65 @@
+{
+  "version": 11,
+  "randomSeed": "17de1408109246131b2b90a69e335398",
+  "graph": {
+    "viewport": {
+      "xmin": -4.462125017208051e+28,
+      "ymin": -1.7115766152540428e+28,
+      "xmax": 3.367803129887582e+28,
+      "ymax": 7.901778707089554e+28
+    },
+    "__v12ViewportLatexStash": {
+      "xmin": "-44621250172080510000000000000",
+      "xmax": "33678031298875820000000000000",
+      "ymin": "-17115766152540428000000000000",
+      "ymax": "79017787070895540000000000000"
+    }
+  },
+  "expressions": {
+    "list": [
+      {
+        "type": "expression",
+        "id": "1",
+        "color": "#c74440"
+      },
+      {
+        "type": "expression",
+        "id": "2",
+        "color": "#c74440",
+        "latex": "y=10x+50"
+      },
+      {
+        "id": "3",
+        "type": "table",
+        "columns": [
+          {
+            "values": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "100"
+            ],
+            "hidden": true,
+            "id": "4",
+            "color": "#2d70b3",
+            "latex": "x"
+          },
+          {
+            "id": "5",
+            "color": "#c74440",
+            "latex": "10x+50"
+          }
+        ]
+      }
+    ]
+  },
+  "includeFunctionParametersInRandomSeed": true,
+  "doNotMigrateMovablePointStyle": true,
+  "_calculatorType": "GraphingCalculator"
+}

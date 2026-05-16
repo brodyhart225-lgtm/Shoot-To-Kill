@@ -18,7 +18,7 @@ from Assets.img.surfaces import *
 from Assets.img.texts import *
 from Assets.sfx.sounds import *
 from Assets.saves.saves import *
-version = 'v1.4.8'
+version = 'v1.4.9'
 def main():
     global target
     global version
@@ -604,4 +604,8 @@ def main():
     #end
     pygame.quit()
     sys.exit()
-print('all modules successfully loaded')
+if __name__ == '__main__':
+    print('It appears you loaded this game from somewhere that isn\'t main.py')
+    input('press enter to quit --->')
+else:
+    print('all modules successfully loaded')

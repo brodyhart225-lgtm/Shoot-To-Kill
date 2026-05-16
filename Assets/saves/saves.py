@@ -10,3 +10,6 @@ def save_game(data):
     saves_file = os.path.join(os.path.dirname(__file__), 'saves.JSON')
     with open(saves_file, 'w') as f:
         json.dump(data, f)
+if __name__ == '__main__':
+    print('It appears you loaded this game from somewhere that isn\'t main.py')
+    input('press enter to quit --->')

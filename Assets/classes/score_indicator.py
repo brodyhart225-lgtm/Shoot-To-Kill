@@ -16,3 +16,6 @@ class score_indicator:
         self.y += 80
         self.imagerect_text = self.image.get_rect(topleft = (self.x, self.y))
         self.imagerect_img = self.image.get_rect(topright = (self.x, self.y))
+if __name__ == '__main__':
+    print('It appears you loaded this game from somewhere that isn\'t main.py')
+    input('press enter to quit --->')
